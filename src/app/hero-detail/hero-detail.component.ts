@@ -7,5 +7,5 @@ import {Hero} from '../hero';
   styleUrl: './hero-detail.component.css'
 })
 export class HeroDetailComponent {
-
+  @Input() hero?: Hero;
 }
