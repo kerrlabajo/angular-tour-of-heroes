@@ -12,7 +12,7 @@ export class HeroesComponent {
   //   id: 1,
   //   name: 'Windstorm'
   // };
-  heroes = HEROES;
+  heroes: Hero[] = [];
   selectedHero?: Hero;
   
   onSelect(hero: Hero): void {
