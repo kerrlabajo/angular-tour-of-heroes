@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
 
@@ -7,7 +7,7 @@ import { HeroService } from '../hero.service';
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.css']
 })
-export class HeroesComponent {
+export class HeroesComponent implements OnInit{
   // hero: Hero = {
   //   id: 1,
   //   name: 'Windstorm'
