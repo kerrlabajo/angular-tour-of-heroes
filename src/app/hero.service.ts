@@ -14,6 +14,11 @@ export class HeroService {
     private messageService: MessageService,
     private http: HttpClient,
   ) { }
+
+  /** Log a HeroService message with the MessageService */
+  private log(message: string) {
+    this.messageService.add(`HeroService: ${message}`);
+  }
   
   getHeroes(): Observable<Hero[]> {
     const heroes = of(HEROES);
