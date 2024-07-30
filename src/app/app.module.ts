@@ -5,6 +5,8 @@ import { NgFor } from '@angular/common';
 import { NgIf } from '@angular/common';
 import { UpperCasePipe } from '@angular/common';
 
+import { HttpClientModule } from '@angular/common/http';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes/heroes.component';
@@ -27,6 +29,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     NgFor,
     NgIf,
     UpperCasePipe,
+    HttpClientModule,
   ],
   providers: [
     provideClientHydration()
