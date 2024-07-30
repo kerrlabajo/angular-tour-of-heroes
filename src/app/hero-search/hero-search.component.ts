@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 import { Hero } from '../hero';
@@ -9,6 +9,6 @@ import { HeroService } from '../hero.service';
   templateUrl: './hero-search.component.html',
   styleUrls: ['./hero-search.component.css']
 })
-export class HeroSearchComponent {
+export class HeroSearchComponent implements OnInit{
 
 }
