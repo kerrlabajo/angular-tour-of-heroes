@@ -22,6 +22,10 @@ export class HeroService {
   }
 
   private heroesUrl = 'api/heroes';  // URL to web api
+
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
   
   /** GET heroes from the server */
   getHeroes(): Observable<Hero[]> {
