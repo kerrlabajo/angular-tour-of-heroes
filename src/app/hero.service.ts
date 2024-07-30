@@ -10,7 +10,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class HeroService {
 
-  constructor(private messageService: MessageService) { }
+  constructor(
+    private messageService: MessageService,
+    private http: HttpClient,
+  ) { }
   
   getHeroes(): Observable<Hero[]> {
     const heroes = of(HEROES);
