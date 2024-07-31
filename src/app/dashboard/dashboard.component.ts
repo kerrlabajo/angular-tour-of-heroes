@@ -14,9 +14,17 @@ export class DashboardComponent implements OnInit {
 
   constructor(private heroService: HeroService) {}
 
+  private shuffleHeroes(array: any[]): any[] {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
   getHeroes(): void {
     this.heroesSubscription = this.heroService.getHeroes()
-      .subscribe(heroes => this.heroes = heroes.slice(1, 5));
+      .subscribe(heroes => this.heroes = this.shuffleHeroes(heroes).slice(0, 4));
   }
 
   ngOnInit(): void {
