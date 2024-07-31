@@ -1,9 +1,9 @@
 <h2>Top Heroes</h2>
 <div class="heroes-menu">
-  <a *ngFor="let hero of heroes"
-      routerLink="/detail/{{hero.id}}">
-      {{hero.name}}
+  <a *ngFor="let topHero of topHeroes"
+      routerLink="/detail/{{topHero.id}}">
+      {{topHero.name}}
   </a>
 </div>
 
-<app-hero-search></app-hero-search>
+<app-hero-search [sharedHeroes]="heroes"></app-hero-search>
