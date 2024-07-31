@@ -31,7 +31,10 @@ export class HeroService {
   getHeroes(): Observable<Hero[]> {
     return this.http.get<Hero[]>(this.heroesUrl)
       .pipe(
-        tap(_ => this.log('fetched heroes')),
+        tap(() => {
+          this.log('fetched heroes');
+          console.log(`Request GET ${this.heroesUrl} has been made!`)
+        }),
         catchError(this.handleError<Hero[]>('getHeroes', []))
       );
   }
@@ -45,6 +48,7 @@ export class HeroService {
         tap(h => {
           const outcome = h ? 'fetched' : 'did not find';
           this.log(`${outcome} hero id=${id}`);
+          console.log(`Request GET ${url} has been made!`)
         }),
         catchError(this.handleError<Hero>(`getHero id=${id}`))
       );
@@ -54,16 +58,22 @@ export class HeroService {
     getHero(id: number): Observable<Hero> {
       const url = `${this.heroesUrl}/${id}`;
       return this.http.get<Hero>(url).pipe(
-        tap(_ => this.log(`fetched hero id=${id}`)),
+        tap(() => {
+          this.log(`fetched hero id=${id}`);
+          console.log(`Request GET ${url} has been made!`)
+        }),
         catchError(this.handleError<Hero>(`getHero id=${id}`))
       );
     }
 
   private searchHeroesBy(param: string, term: string): Observable<Hero[]> {
     return this.http.get<Hero[]>(`${this.heroesUrl}/?${param}=${term}`).pipe(
-      tap(x => x.length ?
-        this.log(`found heroes matching ${param}: "${term}"`) :
-        this.log(`no heroes matching "${term}"`)),
+      tap(x => {
+          console.log(`Request GET ${this.heroesUrl}/?${param}=${term} has been made!`);
+          x.length ?
+              this.log(`found heroes matching ${param}: "${term}"`) :
+              this.log(`no heroes matching "${term}"`);
+      }),
       catchError(this.handleError<Hero[]>('searchHeroes', []))
     );
   }  
@@ -84,7 +94,10 @@ export class HeroService {
   /** POST: add a new hero to the server */
   addHero(hero: Hero): Observable<Hero> {
     return this.http.post<Hero>(this.heroesUrl, hero, this.httpOptions).pipe(
-      tap((newHero: Hero) => this.log(`added hero w/ id=${newHero.id}`)),
+      tap((newHero: Hero) => {
+        this.log(`added hero w/ id=${newHero.id}`);
+        console.log(`Request POST ${this.heroesUrl} has been made!`)
+      }),
       catchError(this.handleError<Hero>('addHero'))
     );
   }
@@ -92,7 +105,10 @@ export class HeroService {
   /** PUT: update the hero on the server */
   updateHero(hero: Hero): Observable<any> {
     return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
-      tap(_ => this.log(`updated hero id=${hero.id}`)),
+      tap(() => {
+        this.log(`updated hero id=${hero.id}`);
+        console.log(`Request PUT ${this.heroesUrl} has been made!`)
+      }),
       catchError(this.handleError<any>('updateHero'))
     );
   }
@@ -102,7 +118,10 @@ export class HeroService {
     const url = `${this.heroesUrl}/${id}`;
 
     return this.http.delete<Hero>(url, this.httpOptions).pipe(
-      tap(_ => this.log(`deleted hero id=${id}`)),
+      tap(() => {
+        this.log(`deleted hero id=${id}`);
+        console.log(`Request DELETE ${url} has been made!`)
+      }),
       catchError(this.handleError<Hero>('deleteHero'))
     );
   }
