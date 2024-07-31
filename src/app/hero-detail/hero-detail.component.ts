@@ -3,6 +3,7 @@ import {Hero} from '../hero';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { HeroService } from '../hero.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-hero-detail',
@@ -18,25 +19,33 @@ export class HeroDetailComponent implements OnInit{
   ) {}
 
   @Input() hero?: Hero;
-
-  ngOnInit(): void {
-    this.getHero();
-  }
+  private heroSubscription!: Subscription;
   
   getHero(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.heroService.getHero(id)
+    this.heroSubscription = this.heroService.getHeroNo404(id)
       .subscribe(hero => this.hero = hero);
   }
 
   save(): void {
     if (this.hero) {
-      this.heroService.updateHero(this.hero)
+      const updateHeroSubscription = this.heroService.updateHero(this.hero)
         .subscribe(() => this.goBack());
+        updateHeroSubscription.unsubscribe();
     }
   }
 
   goBack(): void {
     this.location.back();
+  }
+
+  ngOnInit(): void {
+    this.getHero();
+  }
+
+  ngOnDestroy() {
+    if (this.heroSubscription) {
+      this.heroSubscription.unsubscribe();
+    }
   }
 }
