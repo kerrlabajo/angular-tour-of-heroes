@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
 import { MessageService } from '../message.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-heroes',
@@ -20,10 +21,11 @@ export class HeroesComponent implements OnInit{
   ) {}
 
   heroes: Hero[] = [];
+  private heroesSubscription!: Subscription;
   selectedHero?: Hero;
   
   getHeroes(): void {
-    this.heroService.getHeroes()
+    this.heroesSubscription = this.heroService.getHeroes()
         .subscribe(heroes => this.heroes = heroes);
   }
 
@@ -43,5 +45,11 @@ export class HeroesComponent implements OnInit{
 
   ngOnInit(): void {
     this.getHeroes();
+  }
+
+  ngOnDestroy() {
+    if (this.heroesSubscription) {
+      this.heroesSubscription.unsubscribe();
+    }
   }
 }
