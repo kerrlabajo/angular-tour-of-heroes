@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,16 +10,23 @@ import { HeroService } from '../hero.service';
 })
 export class DashboardComponent implements OnInit {
   heroes: Hero[] = [];
+  private heroesSubscription!: Subscription;
 
   constructor(private heroService: HeroService) {}
 
   getHeroes(): void {
-    this.heroService.getHeroes()
+    this.heroesSubscription = this.heroService.getHeroes()
       .subscribe(heroes => this.heroes = heroes.slice(1, 5));
   }
 
   ngOnInit(): void {
     this.getHeroes();
+  }
+
+  ngOnDestroy() {
+    if (this.heroesSubscription) {
+      this.heroesSubscription.unsubscribe();
+    }
   }
 
 }
