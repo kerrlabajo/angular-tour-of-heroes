@@ -26,7 +26,10 @@ export class HeroesComponent implements OnInit{
   
   getHeroes(): void {
     this.heroesSubscription = this.heroService.getHeroes()
-        .subscribe(heroes => this.heroes = heroes);
+        .subscribe(heroes => {
+          this.heroes = heroes;
+          this.heroService.setShareableHeroes(heroes);
+        });
   }
 
   add(name: string): void {
