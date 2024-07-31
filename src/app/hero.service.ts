@@ -65,6 +65,15 @@ export class HeroService {
       // if not search term, return empty hero array.
       return of([]);
     }
+    if (!isNaN(Number(term))) {
+      term = term.trim();
+      return this.http.get<Hero[]>(`${this.heroesUrl}/?id=${term}`).pipe(
+        tap(x => x.length ?
+          this.log(`found heroes matching "${term}"`) :
+          this.log(`no heroes matching "${term}"`)),
+        catchError(this.handleError<Hero[]>('searchHeroes', []))
+      );
+    }
     return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
       tap(x => x.length ?
         this.log(`found heroes matching "${term}"`) :
