@@ -76,19 +76,9 @@ export class HeroService {
     }
     if (!isNaN(Number(term))) {
       term = term.trim();
-      return this.http.get<Hero[]>(`${this.heroesUrl}/?id=${term}`).pipe(
-        tap(x => x.length ?
-          this.log(`found heroes matching "${term}"`) :
-          this.log(`no heroes matching "${term}"`)),
-        catchError(this.handleError<Hero[]>('searchHeroes', []))
-      );
+      return this.searchHeroesBy('id', term);
     }
-    return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
-      tap(x => x.length ?
-        this.log(`found heroes matching "${term}"`) :
-        this.log(`no heroes matching "${term}"`)),
-      catchError(this.handleError<Hero[]>('searchHeroes', []))
-    );
+    return this.searchHeroesBy('name', term);
   }
 
   /** POST: add a new hero to the server */
