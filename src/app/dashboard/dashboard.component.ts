@@ -24,11 +24,18 @@ export class DashboardComponent implements OnInit {
   }
 
   getHeroes(): void {
-    this.heroesSubscription = this.heroService.getHeroes()
+    const sharedHeroes = this.heroService.getShareableHeroes();
+    if (sharedHeroes.length > 0){
+      this.heroes = sharedHeroes;
+      this.topHeroes = this.shuffleHeroes(this.heroes).slice(0, 4);
+    } else {
+      this.heroesSubscription = this.heroService.getHeroes()
       .subscribe(heroes => {
         this.heroes = heroes;
         this.topHeroes = this.shuffleHeroes(heroes).slice(0, 4);
+        this.heroService.setShareableHeroes(heroes);
       });
+    }
   }
 
   ngOnInit(): void {
