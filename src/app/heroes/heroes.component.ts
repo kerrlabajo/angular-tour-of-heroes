@@ -32,15 +32,19 @@ export class HeroesComponent implements OnInit{
   add(name: string): void {
     name = name.trim();
     if (!name) { return; }
-    this.heroService.addHero({ name } as Hero)
+    const addHeroSubscription = this.heroService.addHero({ name } as Hero)
       .subscribe(hero => {
         this.heroes.push(hero);
+        addHeroSubscription.unsubscribe();
       });
   }
 
   delete(hero: Hero): void {
-    this.heroes = this.heroes.filter(h => h !== hero);
-    this.heroService.deleteHero(hero.id).subscribe();
+    const deleteHeroSubscription = this.heroService.deleteHero(hero.id)
+      .subscribe(() => {
+        this.heroes = this.heroes.filter(h => h !== hero);
+        deleteHeroSubscription.unsubscribe();
+      });
   }
 
   ngOnInit(): void {
