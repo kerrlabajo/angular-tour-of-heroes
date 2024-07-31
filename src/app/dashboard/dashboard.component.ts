@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 })
 export class DashboardComponent implements OnInit {
   heroes: Hero[] = [];
+  topHeroes: Hero[] = [];
   private heroesSubscription!: Subscription;
 
   constructor(private heroService: HeroService) {}
@@ -24,7 +25,10 @@ export class DashboardComponent implements OnInit {
 
   getHeroes(): void {
     this.heroesSubscription = this.heroService.getHeroes()
-      .subscribe(heroes => this.heroes = this.shuffleHeroes(heroes).slice(0, 4));
+      .subscribe(heroes => {
+        this.heroes = heroes;
+        this.topHeroes = this.shuffleHeroes(heroes).slice(0, 4);
+      });
   }
 
   ngOnInit(): void {
