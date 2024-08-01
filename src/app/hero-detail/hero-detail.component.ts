@@ -41,6 +41,15 @@ export class HeroDetailComponent implements OnInit{
     }
   }
 
+  delete(hero: Hero): void {
+    if(confirm(`Are you sure you want to delete ${hero.name}?`)) {
+      const deleteHeroSubscription = this.heroService.deleteHero(hero.id)
+        .subscribe(() => {
+          deleteHeroSubscription.unsubscribe();
+        });
+    }
+  }
+
   goBack(): void {
     this.location.back();
   }
