@@ -47,6 +47,7 @@ export class HeroesComponent implements OnInit{
       const deleteHeroSubscription = this.heroService.deleteHero(hero.id)
         .subscribe(() => {
           this.heroes = this.heroes.filter(h => h !== hero);
+          this.heroService.setShareableHeroes(this.heroes);
           deleteHeroSubscription.unsubscribe();
         });
     }
