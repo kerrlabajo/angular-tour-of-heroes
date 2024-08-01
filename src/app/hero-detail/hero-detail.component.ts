@@ -23,15 +23,21 @@ export class HeroDetailComponent implements OnInit{
   
   getHero(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.heroSubscription = this.heroService.getHeroNo404(id)
-      .subscribe(hero => this.hero = hero);
+    const shareableHeroes = this.heroService.getShareableHeroes();
+  
+    const hero = shareableHeroes.find(h => h.id === id);
+    if (hero) {
+      this.hero = hero;
+    } else {
+      this.heroSubscription = this.heroService.getHeroNo404(id)
+        .subscribe(hero => this.hero = hero);
+    }
   }
 
   save(): void {
     if (this.hero) {
-      const updateHeroSubscription = this.heroService.updateHero(this.hero)
-        .subscribe(() => this.goBack());
-        updateHeroSubscription.unsubscribe();
+      const updateHeroSubscription: Subscription = this.heroService.updateHero(this.hero)
+        .subscribe(() => updateHeroSubscription.unsubscribe());
     }
   }
 
