@@ -43,11 +43,14 @@ export class HeroesComponent implements OnInit{
   }
 
   delete(hero: Hero): void {
-    const deleteHeroSubscription = this.heroService.deleteHero(hero.id)
-      .subscribe(() => {
-        this.heroes = this.heroes.filter(h => h !== hero);
-        deleteHeroSubscription.unsubscribe();
-      });
+    if(confirm(`Are you sure you want to delete ${hero.name}?`)) {
+      const deleteHeroSubscription = this.heroService.deleteHero(hero.id)
+        .subscribe(() => {
+          this.heroes = this.heroes.filter(h => h !== hero);
+          this.heroService.setShareableHeroes(this.heroes);
+          deleteHeroSubscription.unsubscribe();
+        });
+    }
   }
 
   ngOnInit(): void {
