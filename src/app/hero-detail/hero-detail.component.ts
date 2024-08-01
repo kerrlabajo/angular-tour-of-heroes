@@ -29,9 +29,8 @@ export class HeroDetailComponent implements OnInit{
 
   save(): void {
     if (this.hero) {
-      const updateHeroSubscription = this.heroService.updateHero(this.hero)
-        .subscribe(() => this.goBack());
-        updateHeroSubscription.unsubscribe();
+      const updateHeroSubscription: Subscription = this.heroService.updateHero(this.hero)
+        .subscribe(() => updateHeroSubscription.unsubscribe());
     }
   }
 
