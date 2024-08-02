@@ -48,9 +48,9 @@ export class HeroSearchComponent implements OnInit{
     }
     if (!isNaN(Number(term))) {
       term = term.trim();
-      return this.sharedHeroes.filter(hero => hero.id.toString().includes(term));
+      return this.heroes.filter(hero => hero.id.toString().includes(term));
     }
-    return this.sharedHeroes.filter(hero =>
+    return this.heroes.filter(hero =>
       hero.name.toLowerCase().includes(term.toLowerCase())
     );
   }
