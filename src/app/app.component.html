@@ -8,6 +8,9 @@
       <div class="navbar-nav">
         <a class="nav" routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Dashboard</a>
         <a class="nav" routerLink="/heroes" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Heroes</a>
+        <div class="search-container">
+          <app-hero-search></app-hero-search>
+        </div>
       </div>
     </div>
   </div>
