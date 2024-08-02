@@ -41,12 +41,16 @@ export class HeroesComponent implements OnInit{
       });
   }
 
-  delete(hero: Hero): void {
+  delete(hero: Hero, event: Event): void {
+    event.preventDefault();
+    event.stopPropagation();
     if(confirm(`Are you sure you want to delete ${hero.name}?`)) {
       const deleteHeroSubscription = this.heroService.deleteHero(hero.id)
         .subscribe(() => {
-          this.heroes = this.heroes.filter(h => h !== hero);
-          this.heroService.setShareableHeroes(this.heroes);
+          const index = this.heroes.indexOf(hero);
+          if (index > -1) {
+            this.heroes.splice(index, 1); // Remove the element directly
+          }
           deleteHeroSubscription.unsubscribe();
         });
     }
