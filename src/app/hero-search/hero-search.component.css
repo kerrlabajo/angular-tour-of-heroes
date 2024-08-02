@@ -30,7 +30,8 @@ label {
     display: inline-block;
     width: 100%;
     max-width: 600px;
-    padding: .5rem;
+    padding-top: .5rem;
+    padding-left: .5rem;
     box-sizing: border-box;
     text-decoration: none;
     color: black;
@@ -56,7 +57,7 @@ label {
     position: relative;
     left: -1px;
     top: -4px;
-    height: 1.8em;
+    height: 2.5em;
     min-width: 16px;
     text-align: right;
     margin-right: .8em;
