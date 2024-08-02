@@ -23,6 +23,9 @@ export class HeroSearchComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.heroService.getShareableHeroes().subscribe(sharedHeroes => {
+      this.heroes = sharedHeroes
+    });
     this.heroes$ = this.searchTerms.pipe(
       // wait 300ms after each keystroke before considering the term
       debounceTime(100),
