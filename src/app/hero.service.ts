@@ -10,6 +10,8 @@ import { catchError, map, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class HeroService {
+  private heroesSubject = new BehaviorSubject<Hero[]>([]);
+  shareableHeroes$ = this.heroesSubject.asObservable();
 
   constructor(
     private messageService: MessageService,
