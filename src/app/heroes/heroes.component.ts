@@ -27,7 +27,7 @@ export class HeroesComponent implements OnInit{
   getHeroes(): void {
     this.heroesSubscription = this.heroService.getHeroes()
         .subscribe(heroes => {
-          this.heroes = heroes;
+          this.heroes = heroes.sort((a, b) => a.id - b.id);
         });
   }
 
