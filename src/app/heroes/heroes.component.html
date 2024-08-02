@@ -18,6 +18,6 @@
   <a routerLink="/detail/{{hero.id}}" class="list-group-item list-group-item-action" *ngFor="let hero of heroes">
     <span class="badge text-bg-primary rounded-pill">{{hero.id}}</span> 
     <span class="text-black p-5">{{hero.name}}</span>
-    <button type="button" class="delete" title="delete" (click)="delete(hero)">X</button>
+    <button type="button" class="delete" title="delete" (click)="delete(hero, $event)">X</button>
   </a>
 </div>
