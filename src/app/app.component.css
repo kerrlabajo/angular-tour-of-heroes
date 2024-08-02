@@ -2,6 +2,11 @@
 h1 {
     margin-bottom: 0;
   }
+
+  nav {
+    position: relative;
+  }
+
   nav a {
     padding: 1rem;
     text-decoration: none;
@@ -17,4 +22,9 @@ h1 {
   nav a.active {
     color: white;
     background-color: #42545C;
+  }
+
+  .search-container {
+    position: relative;
+    margin-top: 15px;
   }
