@@ -14,12 +14,10 @@
     Add hero
   </button>
 </div>
-<ul class="heroes">
-  <li *ngFor="let hero of heroes">
-    <a routerLink="/detail/{{hero.id}}">
-      <span class="badge">{{hero.id}}</span> {{hero.name}}
-    </a>
-    <button type="button" class="delete" title="delete hero"
-      (click)="delete(hero)">x</button>
-  </li>
-</ul>
+<div class="list-group d-inline-flex">
+  <a routerLink="/detail/{{hero.id}}" class="list-group-item list-group-item-action" *ngFor="let hero of heroes">
+    <span class="badge text-bg-primary rounded-pill">{{hero.id}}</span> 
+    <span class="text-black ps-5 pe-5">{{hero.name}}</span>
+    <button type="button" class="delete" title="delete" (click)="delete(hero, $event)">X</button>
+  </a>
+</div>

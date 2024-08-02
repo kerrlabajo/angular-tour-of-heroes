@@ -11,7 +11,7 @@ import { HeroService } from '../hero.service';
 })
 export class HeroSearchComponent implements OnInit{
   heroes$!: Observable<Hero[]>;
-  @Input() sharedHeroes!: Hero[];
+  heroes: Hero[] = [];
 
   private searchTerms = new Subject<string>();
 
@@ -23,18 +23,17 @@ export class HeroSearchComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.heroService.getShareableHeroes().subscribe(sharedHeroes => {
+      this.heroes = sharedHeroes
+    });
     this.heroes$ = this.searchTerms.pipe(
-      // wait 300ms after each keystroke before considering the term
-      debounceTime(100),
+      debounceTime(100), // wait 300ms after each keystroke before considering the term
 
-      // ignore new term if same as previous term
-      distinctUntilChanged(),
+      distinctUntilChanged(), // ignore new term if same as previous term
 
-      // map the search term to a filtered list of sharedHeroes
-      map((term: string) => this.filterHeroes(term)),
+      map((term: string) => this.filterHeroes(term)), // map the search term to a filtered list of sharedHeroes
 
-      // switch to new search observable each time the term changes
-      // switchMap((term: string) => this.heroService.searchHeroes(term)),
+      // switchMap((term: string) => this.heroService.searchHeroes(term)), switch to new search observable each time the term changes
     );
   }
 
@@ -45,9 +44,9 @@ export class HeroSearchComponent implements OnInit{
     }
     if (!isNaN(Number(term))) {
       term = term.trim();
-      return this.sharedHeroes.filter(hero => hero.id.toString().includes(term));
+      return this.heroes.filter(hero => hero.id.toString().includes(term));
     }
-    return this.sharedHeroes.filter(hero =>
+    return this.heroes.filter(hero =>
       hero.name.toLowerCase().includes(term.toLowerCase())
     );
   }

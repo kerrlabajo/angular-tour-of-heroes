@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Hero } from './hero';
 import { HEROES } from './mock-heroes';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -10,20 +10,16 @@ import { catchError, map, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class HeroService {
+  private heroesSubject = new BehaviorSubject<Hero[]>([]);
+  shareableHeroes$ = this.heroesSubject.asObservable();
 
   constructor(
     private messageService: MessageService,
     private http: HttpClient,
   ) { }
 
-  private shareableHeroes: Hero[] = [];
-
-  setShareableHeroes(heroes: Hero[]): void {
-    this.shareableHeroes = heroes;
-  }
-
-  getShareableHeroes(): Hero[] {
-    return this.shareableHeroes;
+  getShareableHeroes(): Observable<Hero[]> {
+    return this.shareableHeroes$;
   }
 
   /** Log a HeroService message with the MessageService */
@@ -41,7 +37,10 @@ export class HeroService {
   getHeroes(): Observable<Hero[]> {
     return this.http.get<Hero[]>(this.heroesUrl)
       .pipe(
-        tap(_ => this.log('fetched heroes')),
+        tap(heroes => {
+          this.log('fetched heroes');
+          this.heroesSubject.next(heroes);
+        }),
         catchError(this.handleError<Hero[]>('getHeroes', []))
       );
   }

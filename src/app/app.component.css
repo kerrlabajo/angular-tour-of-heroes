@@ -2,13 +2,16 @@
 h1 {
     margin-bottom: 0;
   }
+
+  nav {
+    position: relative;
+  }
+
   nav a {
     padding: 1rem;
     text-decoration: none;
     margin-top: 10px;
     display: inline-block;
-    background-color: #e8e8e8;
-    color: #3d3d3d;
     border-radius: 4px;
   }
   
@@ -16,6 +19,12 @@ h1 {
     color: white;
     background-color: #42545C;
   }
-  nav a:active {
-    background-color: black;
+  nav a.active {
+    color: white;
+    background-color: #42545C;
+  }
+
+  .search-container {
+    position: relative;
+    margin-top: 15px;
   }
