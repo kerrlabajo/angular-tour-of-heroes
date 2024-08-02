@@ -19,10 +19,25 @@ label {
   input:focus {
     outline: #336699 auto 1px;
   }
-  
+
   li {
     list-style-type: none;
   }
+
+  .search-result {
+    position: absolute;
+    top: 100%; /* Position below the input field */
+    left: 0;
+    right: 0;
+    background-color: white;
+    border: 0px solid #ccc;
+    max-height: 200px; /* Limit the height of the dropdown */
+    overflow-y: auto; /* Add scroll if the content exceeds the max height */
+    z-index: 1000; /* Ensure the dropdown is above other content */
+    margin-top: 0;
+    padding-left: 0;
+  }
+
   .search-result li a {
     border-bottom: 1px solid gray;
     border-left: 1px solid gray;
@@ -42,11 +57,6 @@ label {
     color: white;
   }
   
-  ul.search-result {
-    margin-top: 0;
-    padding-left: 0;
-  }
-
   .search-result .badge {
     display: inline-block;
     font-size: small;
