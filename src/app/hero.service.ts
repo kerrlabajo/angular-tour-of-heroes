@@ -18,14 +18,8 @@ export class HeroService {
     private http: HttpClient,
   ) { }
 
-  private shareableHeroes: Hero[] = [];
-
-  setShareableHeroes(heroes: Hero[]): void {
-    this.shareableHeroes = heroes;
-  }
-
-  getShareableHeroes(): Hero[] {
-    return this.shareableHeroes;
+  getShareableHeroes(): Observable<Hero[]> {
+    return this.shareableHeroes$;
   }
 
   /** Log a HeroService message with the MessageService */
