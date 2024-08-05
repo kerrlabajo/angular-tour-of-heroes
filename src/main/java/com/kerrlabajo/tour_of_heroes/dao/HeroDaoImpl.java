@@ -11,8 +11,6 @@ import java.util.List;
 @Repository
 public class HeroDaoImpl implements HeroDao{
 
-    JdbcTemplate jdbcTemplate;
-
     @Autowired
     JdbcTemplate jdbcTemplate;
 
