@@ -3,11 +3,11 @@ package com.kerrlabajo.tour_of_heroes.dao;
 import com.kerrlabajo.tour_of_heroes.model.Hero;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Component
+@Repository
 public class HeroDaoImpl implements HeroDao{
 
     JdbcTemplate jdbcTemplate;
