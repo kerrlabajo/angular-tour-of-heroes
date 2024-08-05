@@ -2,6 +2,7 @@ package com.kerrlabajo.tour_of_heroes.dao;
 
 import com.kerrlabajo.tour_of_heroes.model.Hero;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
