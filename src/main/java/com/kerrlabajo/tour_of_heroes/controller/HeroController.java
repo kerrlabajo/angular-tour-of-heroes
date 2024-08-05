@@ -1,10 +1,9 @@
 package com.kerrlabajo.tour_of_heroes.controller;
 
-import com.kerrlabajo.tour_of_heroes.dao.HeroDao;
+import com.kerrlabajo.tour_of_heroes.repository.HeroDao;
 import com.kerrlabajo.tour_of_heroes.model.Hero;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

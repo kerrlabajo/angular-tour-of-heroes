@@ -1,4 +1,4 @@
-package com.kerrlabajo.tour_of_heroes.dao;
+package com.kerrlabajo.tour_of_heroes.repository;
 
 import com.kerrlabajo.tour_of_heroes.model.Hero;
 import org.springframework.beans.factory.annotation.Autowired;

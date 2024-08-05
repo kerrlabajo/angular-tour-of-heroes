@@ -1,7 +1,7 @@
 package com.kerrlabajo.tour_of_heroes.config;
 
-import com.kerrlabajo.tour_of_heroes.dao.HeroDao;
-import com.kerrlabajo.tour_of_heroes.dao.HeroDaoImpl;
+import com.kerrlabajo.tour_of_heroes.repository.HeroDao;
+import com.kerrlabajo.tour_of_heroes.repository.HeroDaoImpl;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
