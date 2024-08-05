@@ -13,9 +13,7 @@ public class HeroDaoImpl implements HeroDao{
     JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public HeroDaoImpl(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
+    JdbcTemplate jdbcTemplate;
 
     @Override
     public List<Hero> getAllHeroes() {
