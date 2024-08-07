@@ -12,6 +12,7 @@
 	<artifactId>tour-of-heroes</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>tour-of-heroes</name>
+	<packaging>war</packaging>
 	<description>Backend project for Tour of Heroes</description>
 	<url/>
 	<licenses>
