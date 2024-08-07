@@ -13,9 +13,6 @@ MIT
 @angular/router
 MIT
 
-angular-in-memory-web-api
-MIT
-
 bootstrap
 MIT
 The MIT License (MIT)
