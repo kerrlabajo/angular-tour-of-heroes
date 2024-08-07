@@ -51,6 +51,10 @@ public class HeroDaoImpl implements HeroDao{
 
     @Override
     public Hero deleteHero(int id) {
-        return null;
+        return jdbcTemplate.queryForObject(
+                "DELETE FROM heroes WHERE id = ? RETURNING *",
+                new Object[]{id},
+                new BeanPropertyRowMapper<>(Hero.class)
+        );
     }
 }
