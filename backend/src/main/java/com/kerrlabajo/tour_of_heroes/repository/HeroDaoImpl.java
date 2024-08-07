@@ -24,7 +24,11 @@ public class HeroDaoImpl implements HeroDao{
 
     @Override
     public Hero getHeroById(int id) {
-        return null;
+        return jdbcTemplate.queryForObject(
+                "SELECT * FROM heroes WHERE id = ?",
+                new Object[]{id},
+                new BeanPropertyRowMapper<>(Hero.class)
+        );
     }
 
     @Override
