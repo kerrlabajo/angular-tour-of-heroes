@@ -26,4 +26,9 @@ public class HeroController {
     public Hero getHeroById(@RequestParam int id) {
         return heroDao.getHeroById(id);
     }
+
+    @PostMapping
+    public Hero addHero(@RequestBody Hero hero) {
+        return heroDao.addHero(hero);
+    }
 }

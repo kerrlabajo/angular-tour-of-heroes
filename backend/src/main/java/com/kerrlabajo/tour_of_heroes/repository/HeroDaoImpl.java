@@ -33,7 +33,11 @@ public class HeroDaoImpl implements HeroDao{
 
     @Override
     public Hero addHero(Hero hero) {
-        return null;
+        return jdbcTemplate.queryForObject(
+                "INSERT INTO heroes (name) VALUES (?) RETURNING *",
+                new Object[]{hero.getName()},
+                new BeanPropertyRowMapper<>(Hero.class)
+        );
     }
 
     @Override
