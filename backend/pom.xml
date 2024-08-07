@@ -60,6 +60,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>tour-of-heroes</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
