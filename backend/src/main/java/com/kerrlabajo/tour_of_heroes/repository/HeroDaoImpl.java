@@ -42,7 +42,11 @@ public class HeroDaoImpl implements HeroDao{
 
     @Override
     public Hero updateHero(Hero hero) {
-        return null;
+        return jdbcTemplate.queryForObject(
+                "UPDATE heroes SET name = ? WHERE id = ? RETURNING *",
+                new Object[]{hero.getName(), hero.getId()},
+                new BeanPropertyRowMapper<>(Hero.class)
+        );
     }
 
     @Override

@@ -31,4 +31,9 @@ public class HeroController {
     public Hero addHero(@RequestBody Hero hero) {
         return heroDao.addHero(hero);
     }
+
+    @PutMapping
+    public Hero updateHero(@RequestBody Hero hero) {
+        return heroDao.updateHero(hero);
+    }
 }
