@@ -24,21 +24,37 @@ public class HeroDaoImpl implements HeroDao{
 
     @Override
     public Hero getHeroById(int id) {
-        return null;
+        return jdbcTemplate.queryForObject(
+                "SELECT * FROM heroes WHERE id = ?",
+                new Object[]{id},
+                new BeanPropertyRowMapper<>(Hero.class)
+        );
     }
 
     @Override
     public Hero addHero(Hero hero) {
-        return null;
+        return jdbcTemplate.queryForObject(
+                "INSERT INTO heroes (name) VALUES (?) RETURNING *",
+                new Object[]{hero.getName()},
+                new BeanPropertyRowMapper<>(Hero.class)
+        );
     }
 
     @Override
     public Hero updateHero(Hero hero) {
-        return null;
+        return jdbcTemplate.queryForObject(
+                "UPDATE heroes SET name = ? WHERE id = ? RETURNING *",
+                new Object[]{hero.getName(), hero.getId()},
+                new BeanPropertyRowMapper<>(Hero.class)
+        );
     }
 
     @Override
     public Hero deleteHero(int id) {
-        return null;
+        return jdbcTemplate.queryForObject(
+                "DELETE FROM heroes WHERE id = ? RETURNING *",
+                new Object[]{id},
+                new BeanPropertyRowMapper<>(Hero.class)
+        );
     }
 }
