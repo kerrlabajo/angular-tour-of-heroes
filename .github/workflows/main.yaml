@@ -34,11 +34,11 @@ jobs:
         git config --global user.name "Kerr Labajo"
 
     - name: Deploy to GitHub Pages
-      run: |
-        npm run ng -- deploy --base-href=/tour-of-heroes/ --name="Kerr Labajo" --email="labajokerr5@gmail.com"
-
       env:
-        CI: true
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      run: |
+        npm run ng -- deploy --base-href=/tour-of-heroes/ --name="kerrlabajo" --email="labajokerr5@gmail.com"
+
+
 
       
