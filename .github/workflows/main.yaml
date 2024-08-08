@@ -29,7 +29,7 @@ jobs:
       run: npm install --force
 
     - name: Build Angular App
-      run: npm run build --base-href=/tour-of-heroes/ --output-path=docs
+      run: npm run build --base-href=/tour-of-heroes/
 
     - name: Configure Git
       run: |
@@ -37,11 +37,9 @@ jobs:
         git config --global user.name "Kerr Labajo"
 
     - name: Deploy to GitHub Pages
-      run: |
-        npx angular-cli-ghpages --dir=docs --no-silent
-
-      env:
-        CI: true
+      uses: JamesIves/github-pages-deploy-action@4.1.5
+      with:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-
+        BRANCH: gh-pages
+        FOLDER: dist/tour-of-heroes
       
