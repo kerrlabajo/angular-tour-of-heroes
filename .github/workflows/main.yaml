@@ -33,7 +33,7 @@ jobs:
 
     - name: Deploy to GitHub Pages
       run: |
-        npx angular-cli-ghpages --dir=dist/tour-of-heroes
+        npx angular-cli-ghpages --dir=dist/tour-of-heroes --no-silent
 
       env:
         CI: true
