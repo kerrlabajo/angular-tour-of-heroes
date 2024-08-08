@@ -33,7 +33,7 @@ jobs:
 
     - name: Deploy to GitHub Pages
       run: |
-        npx angular-cli-ghpages --repo=https://GH_TOKEN@github.com/kerrlabajo/tour-of-heroes.git --name="Displayed Username" --email=labajokerr5@gmail.com --dir=dist/tour-of-heroes
+        npx angular-cli-ghpages --dir=dist/tour-of-heroes
 
       env:
         CI: true
