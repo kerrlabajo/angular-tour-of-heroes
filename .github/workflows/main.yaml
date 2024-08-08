@@ -4,32 +4,49 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: frontend
+
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Set up Node.js
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v4
       with:
         node-version: '18'
 
     - name: Install dependencies
-      run: npm install
+      run: npm install --force
 
     - name: Build Angular App
-      run: npm run build
+      run: npx ng build --output-path docs --base-href /tour-of-heroes/
+
+    - name: Configure Git
+      run: |
+        git config user.email "labajokerr5@gmail.com"
+        git config user.name "Kerr Labajo"
 
     - name: Deploy to GitHub Pages
-      run: |
-        npx angular-cli-ghpages --dir=frontend/dist/tour-of-heroes
+      if: github.event_name == 'push'
+      run: npx angular-cli-ghpages --dir=docs --no-silent
 
       env:
         CI: true
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
+
 
       
