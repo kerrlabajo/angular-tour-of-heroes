@@ -24,12 +24,10 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '18'
+        cache: 'npm'
 
     - name: Install dependencies
       run: npm install --force
-
-    - name: Build Angular App
-      run: npm run build --base-href=/tour-of-heroes/
 
     - name: Configure Git
       run: |
@@ -38,7 +36,7 @@ jobs:
 
     - name: Deploy to GitHub Pages
       run: |
-        npx angular-cli-ghpages --dir=dist/tour-of-heroes/browser --no-silent
+        npm run ng -- deploy --base-href=/tour-of-heroes/ --name="Kerr Labajo" --email="labajokerr5@gmail.com"
 
       env:
         CI: true
