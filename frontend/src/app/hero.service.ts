@@ -27,7 +27,7 @@ export class HeroService {
     this.messageService.add(`HeroService: ${message}`);
   }
 
-  private heroesUrl = 'http://localhost:8080/api/heroes';  // URL to web api
+  private heroesUrl = 'http://kerrlabajo-tour-of-heroes.ap-southeast-1.elasticbeanstalk.com/api/heroes';  // URL to web api
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
