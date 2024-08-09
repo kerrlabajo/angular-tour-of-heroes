@@ -17,7 +17,6 @@ export class LoadingInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     this.totalRequests++;
-    console.log(`Request ${request.method} ${request.url} has been made!`)
     this.loadingService.setLoading(true);
     return next.handle(request).pipe(
       finalize(() => {
