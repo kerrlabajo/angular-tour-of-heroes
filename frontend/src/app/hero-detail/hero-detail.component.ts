@@ -31,7 +31,10 @@ export class HeroDetailComponent implements OnInit{
   save(): void {
     if (this.hero) {
       const updateHeroSubscription: Subscription = this.heroService.updateHero(this.hero)
-        .subscribe(() => updateHeroSubscription.unsubscribe());
+        .subscribe(() => {
+          updateHeroSubscription.unsubscribe();
+          this.goBack();
+        });
     }
   }
 
@@ -40,6 +43,7 @@ export class HeroDetailComponent implements OnInit{
       const deleteHeroSubscription = this.heroService.deleteHero(hero.id)
         .subscribe(() => {
           deleteHeroSubscription.unsubscribe();
+          this.goBack();
         });
     }
   }
