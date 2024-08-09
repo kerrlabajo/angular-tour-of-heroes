@@ -14,6 +14,7 @@ export class HeroSearchComponent implements OnInit{
   heroes: Hero[] = [];
 
   private searchTerms = new Subject<string>();
+  showResults = true;
 
   constructor(private heroService: HeroService) {}
 
@@ -38,8 +39,10 @@ export class HeroSearchComponent implements OnInit{
   }
 
   private filterHeroes(term: string): Hero[] {
-    if (!term.trim()) {
+    const emptyTerm = !term.trim();
+    if (emptyTerm) {
       // if no search term, return all sharedHeroes
+      this.showResults = emptyTerm;
       return [];
     }
     if (!isNaN(Number(term))) {
